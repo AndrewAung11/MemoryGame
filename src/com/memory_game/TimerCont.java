@@ -1,8 +1,6 @@
 package com.memory_game;
 
 import javax.swing.*;
-import java.awt.*;
-import java.util.Arrays;
 
 public class  TimerCont extends JLabel {
     // some static variables for easy use
