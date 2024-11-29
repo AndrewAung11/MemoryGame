@@ -63,7 +63,7 @@ public class Game extends JPanel{
         JPanel timerSec = new JPanel();
         JLabel timerLabel = new JLabel("Timer:");
         timerLabel.setFont(new Font("Apotos", Font.PLAIN, 20));
-        JLabel timerWork = new JLabel("00:00:00");
+        TimerCont timerWork = new TimerCont();
         timerWork.setFont(new Font("Consolas", Font.PLAIN, 20));
         timerSec.setLayout(new GridLayout(4, 1));
         timerSec.add(timerLabel);
