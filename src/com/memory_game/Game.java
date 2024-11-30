@@ -90,7 +90,8 @@ public class Game extends JPanel{
         startBtn.setBackground(Color.white);
         startBtn.setFont(new Font("Arial", Font.PLAIN, 30));
         startBtn.addActionListener(e -> {
-            // game generate (option)
+            GameGen generated = new GameGen(option);
+            leftSide.add(generated);
             timerWork.startTimer();
         });
         buttonSec.setLayout(new GridLayout(3, 1));
