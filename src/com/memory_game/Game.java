@@ -10,8 +10,10 @@ public class Game extends JPanel{
 
     private static int width;
     private static int height;
+    private static int option;
 
     public Game(int option) {
+        Game.option = option;
         FlowLayout layout = new FlowLayout();
         layout.setHgap(0);
         layout.setVgap(0);
@@ -87,6 +89,10 @@ public class Game extends JPanel{
         startBtn.setForeground(Color.black);
         startBtn.setBackground(Color.white);
         startBtn.setFont(new Font("Arial", Font.PLAIN, 30));
+        startBtn.addActionListener(e -> {
+            // game generate (option)
+            timerWork.startTimer();
+        });
         buttonSec.setLayout(new GridLayout(3, 1));
         buttonSec.add(new JPanel());
         buttonSec.add(startBtn);
