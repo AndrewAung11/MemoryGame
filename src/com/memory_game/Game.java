@@ -11,6 +11,7 @@ public class Game extends JPanel{
     private static int width;
     private static int height;
     private static int option;
+    private static GameGen generated;
 
     public Game(int option) {
         Game.option = option;
@@ -44,18 +45,21 @@ public class Game extends JPanel{
         leftSide.setPreferredSize(new Dimension(width-150, height));
         rightSide.setPreferredSize(new Dimension(150, height));
         infoSec();
+        game();
     }
 
     private void normal() {
         leftSide.setPreferredSize(new Dimension(width-150, height));
         rightSide.setPreferredSize(new Dimension(150, height));
         infoSec();
+        game();
     }
 
     private void difficult() {
         leftSide.setPreferredSize(new Dimension(width-150, height));
         rightSide.setPreferredSize(new Dimension(150, height));
         infoSec();
+        game();
     }
 
     // display
@@ -90,8 +94,7 @@ public class Game extends JPanel{
         startBtn.setBackground(Color.white);
         startBtn.setFont(new Font("Arial", Font.PLAIN, 30));
         startBtn.addActionListener(e -> {
-            GameGen generated = new GameGen(option);
-            leftSide.add(generated);
+            // game.start()
             timerWork.startTimer();
         });
         buttonSec.setLayout(new GridLayout(3, 1));
@@ -101,5 +104,11 @@ public class Game extends JPanel{
         rightSide.add(timerSec);
         rightSide.add(recordSec);
         rightSide.add(buttonSec);
+    }
+
+    private void game() {
+        leftSide.setLayout(new GridLayout(1, 1));
+        generated = new GameGen(option);
+        leftSide.add(generated);
     }
 }
