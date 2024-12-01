@@ -11,6 +11,7 @@ public class Game extends JPanel{
     private static int width;
     private static int height;
     private static int option;
+    private TimerCont timerWork;
     private static GameGen generated;
 
     public Game(int option) {
@@ -69,7 +70,7 @@ public class Game extends JPanel{
         JPanel timerSec = new JPanel();
         JLabel timerLabel = new JLabel("Timer:");
         timerLabel.setFont(new Font("Apotos", Font.PLAIN, 20));
-        TimerCont timerWork = new TimerCont();
+        this.timerWork = new TimerCont();
         timerWork.setFont(new Font("Consolas", Font.PLAIN, 20));
         timerSec.setLayout(new GridLayout(4, 1));
         timerSec.add(timerLabel);
