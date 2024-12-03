@@ -1,13 +1,17 @@
 package com.memory_game;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
+import java.util.Arrays;
+import java.util.Random;
 
 public class GameGen extends JPanel {
 
     private int rows;
     private int columns;
     private JButton[][] buttons;
+    private char[][] values;
 
     public GameGen(int option) {
         switch (option) {
@@ -66,5 +70,55 @@ public class GameGen extends JPanel {
                 this.add(this.buttons[i][j]);
             }
         }
+    }
+
+    // game functions
+    public void startGame() {
+        // ASCII code boundaries for set of actual symbols
+        int min = 33, max = 126;
+
+        values = new char[rows][columns];
+        char[] valueSet = new char[(rows*columns)/2]; // value for each pair of button
+        int[] validity = new int[valueSet.length]; // pair fulfillment count
+
+        int[] discardedASCII = new int[valueSet.length]; // used ascii codes list
+        for (int i = 0; i < valueSet.length; i++) {
+            int j = rolling((max - min  + 1), discardedASCII) + min;
+            discardedASCII[i] = j;
+            valueSet[i] = (char) j; // ascii code to character
+            validity[i] = 2; // assign pair fulfillment initial value
+        }
+
+
+        int[] discardedI = new int[validity.length]; // indexes of used characters from valueSet
+        int index2 = 0; // progression count in former array
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < columns; j++) {
+                int num = rolling(valueSet.length, discardedI);
+                values[i][j] = valueSet[num]; // assign to buttons
+                validity[num]--; // fulfillment count
+                if (validity[num] == 0) {  // fulfillment check
+                    discardedI[index2] = num;
+                    index2++;
+                }
+
+                // setting assigned button properties
+                buttons[i][j].setBackground(new Color(211, 204, 204));
+            }
+        }
+    }
+
+    // generate an unused random number by checking with list
+    private static int rolling(int bound, int[] set) {
+        Random rand = new Random();
+        int num = rand.nextInt(bound);
+        for (int j : set) {
+            if (j == num) {
+                return rolling(bound, set);
+            } else {
+                return num;
+            }
+        }
+        return num;
     }
 }
