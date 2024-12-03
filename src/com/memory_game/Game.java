@@ -95,8 +95,9 @@ public class Game extends JPanel{
         startBtn.setBackground(Color.white);
         startBtn.setFont(new Font("Arial", Font.PLAIN, 30));
         startBtn.addActionListener(e -> {
-            // game.start()
+            generated.startGame();
             timerWork.startTimer();
+            startBtn.setEnabled(false);
         });
         buttonSec.setLayout(new GridLayout(3, 1));
         buttonSec.add(new JPanel());
