@@ -1,9 +1,7 @@
 package com.memory_game;
 
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
-import java.util.Arrays;
 import java.util.Random;
 
 public class GameGen extends JPanel {
