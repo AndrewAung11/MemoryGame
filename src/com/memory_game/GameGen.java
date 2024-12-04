@@ -8,7 +8,7 @@ public class GameGen extends JPanel {
 
     private int rows;
     private int columns;
-    private JButton[][] buttons;
+    private GameBtn[][] buttons;
     private char[][] values;
 
     public GameGen(int option) {
@@ -23,14 +23,14 @@ public class GameGen extends JPanel {
         // rows and columns specifier for the buttons
         this.rows = 4;
         this.columns = 3;
-        this.buttons = new JButton[this.rows][this.columns];
+        this.buttons = new GameBtn[this.rows][this.columns];
 
         this.setLayout(new GridLayout(this.rows, this.columns));
 
         // initial button set
         for(int i = 0; i < this.rows; i++) {
             for(int j = 0; j < this.columns; j++) {
-                this.buttons[i][j] = new JButton("");
+                this.buttons[i][j] = new GameBtn(i, j);
                 this.add(this.buttons[i][j]);
             }
         }
@@ -40,14 +40,14 @@ public class GameGen extends JPanel {
         // rows and columns specifier for the buttons
         this.rows = 5;
         this.columns = 4;
-        this.buttons = new JButton[rows][columns];
+        this.buttons = new GameBtn[this.rows][this.columns];
 
         this.setLayout(new GridLayout(this.rows, this.columns));
 
         // initial button set
         for(int i = 0; i < this.rows; i++) {
             for(int j = 0; j < this.columns; j++) {
-                this.buttons[i][j] = new JButton("");
+                this.buttons[i][j] = new GameBtn(i, j);
                 this.add(this.buttons[i][j]);
             }
         }
@@ -57,14 +57,14 @@ public class GameGen extends JPanel {
         // rows and columns specifier for the buttons
         this.rows = 10;
         this.columns = 10;
-        this.buttons = new JButton[this.rows][this.columns];
+        this.buttons = new GameBtn[this.rows][this.columns];
 
         this.setLayout(new GridLayout(this.rows, this.columns));
 
         // initial button set
         for(int i = 0; i < this.rows; i++) {
             for(int j = 0; j < this.columns; j++) {
-                this.buttons[i][j] = new JButton("");
+                this.buttons[i][j] = new GameBtn(i, j);
                 this.add(this.buttons[i][j]);
             }
         }
@@ -89,19 +89,21 @@ public class GameGen extends JPanel {
 
 
         int[] discardedI = new int[validity.length]; // indexes of used characters from valueSet
+        for (int i = 0; i < valueSet.length; i++) {
+            discardedI[i] = -1;
+        }
+
         int index2 = 0; // progression count in former array
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < columns; j++) {
                 int num = rolling(valueSet.length, discardedI);
                 values[i][j] = valueSet[num]; // assign to buttons
-                validity[num]--; // fulfillment count
+                validity[num] = validity[num] - 1; // fulfillment count
                 if (validity[num] == 0) {  // fulfillment check
                     discardedI[index2] = num;
-                    index2++;
+                    index2 = index2 + 1;
                 }
-
-                // setting assigned button properties
-                buttons[i][j].setBackground(new Color(211, 204, 204));
+                buttons[i][j].gameStart(values[i][j]);
             }
         }
     }
@@ -109,14 +111,18 @@ public class GameGen extends JPanel {
     // generate an unused random number by checking with list
     private static int rolling(int bound, int[] set) {
         Random rand = new Random();
+        boolean safe = false;
         int num = rand.nextInt(bound);
-        for (int j : set) {
-            if (j == num) {
+        for (int i : set) {
+            if (num == i) {
                 return rolling(bound, set);
             } else {
-                return num;
+                safe = true;
             }
         }
-        return num;
+        if (safe) {
+            return num;
+        }
+        return -1;
     }
 }
