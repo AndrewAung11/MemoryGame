@@ -125,4 +125,32 @@ public class GameGen extends JPanel {
         }
         return -1;
     }
+
+    // game check
+    private int buttonIndex = 0;
+    private final int[] previousClicked = new int[2];
+    private int completed = 0;
+    public void gameCheck(int i, int j) {
+        if (buttonIndex == 0) {
+            previousClicked[0] = i;
+            previousClicked[1] = j;
+            buttonIndex = 1;
+        } else if (buttonIndex == 1) {
+            int Pi = previousClicked[0], Pj = previousClicked[1];
+            if (values[i][j] == values[Pi][Pj]) {
+                buttons[i][j].done();
+                buttons[Pi][Pj].done();
+                if (completed == (rows*columns)/2 ) {
+                    // timer stop
+                    // dialog appear -> allow to go back to main menu
+                    // save the time
+                } else {
+                    completed++;
+                }
+            } else {
+                buttons[i][j].reset();
+                buttons[Pi][Pj].reset();
+            }
+        }
+    }
 }
