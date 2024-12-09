@@ -25,8 +25,20 @@ public class GameBtn extends JButton implements ActionListener {
         this.addActionListener(this);
     }
 
+    public void done() {
+        this.setBackground(new Color(43, 152, 6));
+        this.setEnabled(false);
+    }
+
+    public void reset() {
+        this.setBackground(new Color(211, 204, 204));
+        this.setText("");
+        this.setEnabled(true);
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
         this.setText(String.format("%s", this.chac));
+        this.setEnabled(false);
     }
 }
