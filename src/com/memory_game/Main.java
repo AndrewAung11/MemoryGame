@@ -1,14 +1,13 @@
 package com.memory_game;
 
 import javax.swing.*;
-import java.awt.*;
 
 public class Main {
 
     private static JFrame f;
 
     private static StartMenu startMenuS;
-    private static Game gameS;
+    public static Game gameS;
 
     public static void main(String[] args) {
         Main.f = new JFrame("Memory game");
