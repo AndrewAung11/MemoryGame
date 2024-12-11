@@ -128,7 +128,7 @@ public class GameGen extends JPanel {
 
     // game check
     private int buttonIndex = 0;
-    private final int[] previousClicked = new int[2];
+    private final int[] previousClicked = new int[] {-1, -1};
     private int completed = 0;
     public void gameCheck(int i, int j) {
         if (buttonIndex == 0) {
@@ -148,9 +148,12 @@ public class GameGen extends JPanel {
                     completed++;
                 }
             } else {
-                buttons[i][j].reset();
-                buttons[Pi][Pj].reset();
+                buttons[i][j].wrong();
+                buttons[Pi][Pj].wrong();
             }
+            previousClicked[0] = -1;
+            previousClicked[1] = -1;
+            buttonIndex = 0;
         }
     }
 }

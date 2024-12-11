@@ -6,9 +6,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class GameBtn extends JButton implements ActionListener {
-    private int i;
-    private int j;
+    private final int i;
+    private final int j;
     private char chac;
+    private Timer delay = null;
     public GameBtn(int i, int j) {
         this.i = i;
         this.j = j;
@@ -30,7 +31,16 @@ public class GameBtn extends JButton implements ActionListener {
         this.setEnabled(false);
     }
 
-    public void reset() {
+    public void wrong() {
+        this.setBackground(new Color(206, 19, 19));
+        delay = new Timer(1000, e-> {
+            reset();
+        });
+        delay.start();
+    }
+
+    private void reset() {
+        delay.stop();
         this.setBackground(new Color(211, 204, 204));
         this.setText("");
         this.setEnabled(true);
@@ -40,5 +50,6 @@ public class GameBtn extends JButton implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         this.setText(String.format("%s", this.chac));
         this.setEnabled(false);
+        Main.gameS.generated.gameCheck(i ,j);
     }
 }
