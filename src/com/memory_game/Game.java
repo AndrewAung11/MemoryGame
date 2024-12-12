@@ -11,7 +11,7 @@ public class Game extends JPanel{
     private static int width;
     private static int height;
     private static int option;
-    private TimerCont timerWork;
+    public TimerCont timerWork;
     public GameGen generated;
 
     public Game(int option) {

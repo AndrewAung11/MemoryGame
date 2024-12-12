@@ -33,7 +33,7 @@ public class GameBtn extends JButton implements ActionListener {
 
     public void wrong() {
         this.setBackground(new Color(206, 19, 19));
-        delay = new Timer(1000, e-> {
+        delay = new Timer(300, e-> {
             reset();
         });
         delay.start();
