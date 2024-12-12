@@ -3,7 +3,6 @@ package com.memory_game;
 import javax.swing.*;
 
 public class  TimerCont extends JLabel {
-    // some static variables for easy use
     private javax.swing.Timer t = null;
     private final int[] time = {0, 0, 0};
 
@@ -29,11 +28,11 @@ public class  TimerCont extends JLabel {
     //Time intervals
     public void startTimer() {
         if (this.t == null) {
-            this.t = new javax.swing.Timer(1000, e -> {
+            this.t = new javax.swing.Timer(10, e -> {
                 this.time[0] = this.time[0] + 1;
-                if (this.time[0] >= 60) {
+                if (this.time[0] >= 100) {
                     this.time[1] = this.time[1] + 1;
-                    this.time[0] = this.time[0] - 60;
+                    this.time[0] = this.time[0] - 100;
                 }
                 if (this.time[1] >= 60) {
                     this.time[2] = this.time[2] + 1;
