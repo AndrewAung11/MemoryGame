@@ -22,9 +22,27 @@ public class Main {
         Main.f.pack();
     }
 
-    public static void changeToGame(int option) {
+    public static void changeToGame(int option, boolean start) {
+        if (!start) { // clear previous values
+            Main.f.remove(gameS);
+            gameS = null;
+            System.gc();
+        } else {
+            Main.f.remove(startMenuS);
+        }
+
         gameS = new Game(option);
         Main.f.add(gameS);
+        Main.f.pack();
+    }
+
+    public static void Start() {
+        // clear previous values
+        Main.f.remove(gameS);
+        gameS = null;
+        System.gc();
+
+        Main.f.add(startMenuS);
         Main.f.pack();
     }
 }

@@ -150,9 +150,9 @@ public class GameGen extends JPanel {
                     Object[] choices = {"Return to menu", "Restart this mode"};
                     int choice = JOptionPane.showOptionDialog(Main.f, "Place holder.", "You won!", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, choices, choices[0]);
                     if (choice == 0) {
-                        // return to menu
+                        Main.Start();
                     } else if (choice == 1) {
-                        // restart
+                        Main.changeToGame(this.option, false);
                     }
 
                 } else {

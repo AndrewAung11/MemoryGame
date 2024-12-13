@@ -5,17 +5,17 @@ import java.awt.*;
 
 public class Game extends JPanel{
 
-    private static final JPanel leftSide = new JPanel();
-    private static final JPanel rightSide  = new JPanel();
+    private final JPanel leftSide = new JPanel();
+    private final JPanel rightSide  = new JPanel();
 
-    private static int width;
-    private static int height;
-    private static int option;
+    private int width;
+    private int height;
+    private final int option;
     public TimerCont timerWork;
     public GameGen generated;
 
     public Game(int option) {
-        Game.option = option;
+        this.option = option;
         FlowLayout layout = new FlowLayout();
         layout.setHgap(0);
         layout.setVgap(0);

@@ -27,7 +27,7 @@ public class StartMenu extends JPanel {
             modes[i] = new JButton(list[i]);
 
             int finalI = i;
-            modes[i].addActionListener(e-> Main.changeToGame(finalI));
+            modes[i].addActionListener(e-> Main.changeToGame(finalI, true));
 
             modes[i].setFocusable(false);
             modes[i].setForeground(Color.black);
