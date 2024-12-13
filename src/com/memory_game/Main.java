@@ -4,7 +4,7 @@ import javax.swing.*;
 
 public class Main {
 
-    private static JFrame f;
+    public static JFrame f;
 
     private static StartMenu startMenuS;
     public static Game gameS;
@@ -23,8 +23,6 @@ public class Main {
     }
 
     public static void changeToGame(int option) {
-        Main.f.remove(startMenuS);
-
         gameS = new Game(option);
         Main.f.add(gameS);
         Main.f.pack();

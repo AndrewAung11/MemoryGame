@@ -10,9 +10,11 @@ public class GameGen extends JPanel {
     private int columns;
     private GameBtn[][] buttons;
     private char[][] values;
+    private final int option;
 
     public GameGen(int option) {
-        switch (option) {
+        this.option = option;
+        switch (this.option) {
             case 0 -> easy();
             case 1 -> normal();
             case 2 -> difficult();
@@ -129,7 +131,7 @@ public class GameGen extends JPanel {
     // game check
     private int buttonIndex = 0;
     private final int[] previousClicked = new int[] {-1, -1};
-    private int completed = 0;
+    private int completed = 1;
     public void gameCheck(int i, int j) {
         if (buttonIndex == 0) {
             previousClicked[0] = i;
@@ -141,9 +143,18 @@ public class GameGen extends JPanel {
                 buttons[i][j].done();
                 buttons[Pi][Pj].done();
                 if (completed == (rows*columns)/2 ) {
-                    // timer stop
-                    // dialog appear -> allow to go back to main menu
-                    // save the time
+                    Main.gameS.timerWork.stopTimer();
+
+                    // save the time -> if new record
+
+                    Object[] choices = {"Return to menu", "Restart this mode"};
+                    int choice = JOptionPane.showOptionDialog(Main.f, "Place holder.", "You won!", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, choices, choices[0]);
+                    if (choice == 0) {
+                        // return to menu
+                    } else if (choice == 1) {
+                        // restart
+                    }
+
                 } else {
                     completed++;
                 }
