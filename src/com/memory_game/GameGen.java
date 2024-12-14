@@ -146,7 +146,7 @@ public class GameGen extends JPanel {
                     Main.gameS.timerWork.stopTimer();
 
                     Object[] choices = {"Return to menu", "Restart this mode"};
-                    int choice = JOptionPane.showOptionDialog(Main.f, "Place holder.", "You won!", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, choices, choices[0]);
+                    int choice = JOptionPane.showOptionDialog(Main.f, "You won!", "You won!", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, choices, choices[0]);
                     if (choice == 0) {
                         Main.Start();
                     } else if (choice == 1) {
