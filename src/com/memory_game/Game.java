@@ -78,17 +78,6 @@ public class Game extends JPanel{
         timerSec.add(new JPanel());
         timerSec.add(new JPanel());
 
-        JPanel recordSec = new JPanel();
-        JLabel recordLabel = new JLabel("Fastest record:");
-        recordLabel.setFont(new Font("Apotos", Font.PLAIN, 20));
-        JLabel recorded = new JLabel("00:00:00");
-        recorded.setFont(new Font("Consolas", Font.PLAIN, 20));
-        recordSec.setLayout(new GridLayout(4, 1));
-        recordSec.add(recordLabel);
-        recordSec.add(recorded);
-        recordSec.add(new JPanel());
-        recordSec.add(new JPanel());
-
         JPanel buttonSec = new JPanel();
         JButton startBtn = new JButton("Start");
         startBtn.setForeground(Color.black);
@@ -104,7 +93,7 @@ public class Game extends JPanel{
         buttonSec.add(startBtn);
 
         rightSide.add(timerSec);
-        rightSide.add(recordSec);
+        rightSide.add(new JPanel());
         rightSide.add(buttonSec);
     }
 

@@ -145,8 +145,6 @@ public class GameGen extends JPanel {
                 if (completed == (rows*columns)/2 ) {
                     Main.gameS.timerWork.stopTimer();
 
-                    // save the time -> if new record
-
                     Object[] choices = {"Return to menu", "Restart this mode"};
                     int choice = JOptionPane.showOptionDialog(Main.f, "Place holder.", "You won!", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, choices, choices[0]);
                     if (choice == 0) {
